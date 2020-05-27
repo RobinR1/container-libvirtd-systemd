@@ -1,0 +1,49 @@
+## Path:        Container/libvirtd
+## Description: Settings for libvirtd container
+## Type:        string
+## Default:     "registry.opensuse.org/home/robinr1/containers/containers/libvirtd:latest"
+#
+# Name of the image path to pull the libvirtd image from
+LIBVIRTD_IMAGE_PATH=registry.opensuse.org/home/robinr1/containers/containers/libvirtd:latest
+
+## Type:        string
+## Default:     "/srv/libvirtd/storage"
+#
+# Name of the path where the default libvirt storage pool should point to
+# This is normaly the location where the VM images will be stored
+STORAGE_POOL_DIR="/srv/libvirtd/storage"
+
+## Type:        string
+## Default:     "/srv/libvirtd/config"
+#
+# Name of the path where the QEMU VM configuration files will be stored
+QEMU_CONFIG_DIR="/srv/libvirtd/config"
+
+## Type:        integer
+## Default:     10022
+#
+# SSH port the libvirtd container will listen on to be able to connect to 
+# the libvirtd instance using qemu+ssh://
+SSHD_PORT=10022
+
+## Type:        string
+## Default:     "/root/.ssh/authorized_keys"
+#
+# Local SSH authorized_keys file to share with the container
+SSH_AUTHORIZED_KEYS=/root/.ssh/authorized_keys
+
+## Type:        string
+## Default:     "/etc/libvirtd-secrets"
+#
+# Name of the path where the file with the password for
+# ROOT_PASSWORD can be found. The file name
+# needs to be the one of the variable name and should not
+# be readable for anybody else.
+SECRETS_DIR="/etc/libvirtd-secrets"
+
+## Type:        integer
+## Default:     300
+#
+# Number of seconds to wait for virtual machines to suspend/shutdown
+# during container shutdown
+SHUTDOWN_TIMEOUT=300
