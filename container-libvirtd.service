@@ -11,7 +11,7 @@ ExecStartPre=-/usr/bin/mkdir -p ${STORAGE_POOL_DIR} ${QEMU_CONFIG_DIR}
 ExecStartPre=-/usr/bin/podman stop libvirtd
 ExecStartPre=-/usr/bin/podman rm libvirtd
 ExecStartPre=-/usr/bin/podman pull ${LIBVIRTD_IMAGE_PATH}
-ExecStart=/usr/bin/podman run --rm --privileged --net=host -v /sys/fs/cgroup:/sys/fs/cgroup:rw -v ${STORAGE_POOL_DIR}:/var/lib/libvirt/ -v ${QEMU_CONFIG_DIR}:/etc/libvirt/qemu -v SSH_AUTHORIZED_KEYS:/root/.ssh/authorized_keys -v ${SECRETS_DIR}:/etc/libvirtd-secrets --env ROOT_PASSWORD_FILE=/etc/libvirtd-secrets/ROOT_PASSWORD --env SSHD_PORT=${SSHD_PORT} --name libvirtd ${LIBVIRTD_IMAGE_PATH}
+ExecStart=/usr/bin/podman run --rm --privileged --net=host -v /sys/fs/cgroup:/sys/fs/cgroup:rw -v ${STORAGE_POOL_DIR}:/var/lib/libvirt/ -v ${QEMU_CONFIG_DIR}:/etc/libvirt/qemu -v SSH_USERCONFIG_DIR:/root/.ssh -v ${SECRETS_DIR}:/etc/libvirtd-secrets --env ROOT_PASSWORD_FILE=/etc/libvirtd-secrets/ROOT_PASSWORD --env SSHD_PORT=${SSHD_PORT} --name libvirtd ${LIBVIRTD_IMAGE_PATH}
 ExecStop=/usr/bin/podman stop -t ${SHUTDOWN_TIMEOUT} libvirtd
 TimeoutStopSec=$(( ${SHUTDOWN_TIMEOUT} + 10 ))
 

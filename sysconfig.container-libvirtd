@@ -27,10 +27,11 @@ QEMU_CONFIG_DIR="/srv/libvirtd/config"
 SSHD_PORT=10022
 
 ## Type:        string
-## Default:     "/root/.ssh/authorized_keys"
+## Default:     "/root/.ssh"
 #
-# Local SSH authorized_keys file to share with the container
-SSH_AUTHORIZED_KEYS=/root/.ssh/authorized_keys
+# Local SSH config directory to share with the container as /root/.ssh 
+# (containing for example: authorized_keys)
+SSH_USERCONFIG_DIR=/root/.ssh
 
 ## Type:        string
 ## Default:     "/etc/libvirtd-secrets"
@@ -39,6 +40,8 @@ SSH_AUTHORIZED_KEYS=/root/.ssh/authorized_keys
 # ROOT_PASSWORD can be found. The file name
 # needs to be the one of the variable name and should not
 # be readable for anybody else.
+# Preferably use SSH_USERCONFIG_DIR to add an authorized_keys to the container
+# instead of using a password based login.
 SECRETS_DIR="/etc/libvirtd-secrets"
 
 ## Type:        integer
